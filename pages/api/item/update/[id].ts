@@ -1,12 +1,32 @@
-import auth from "../../../../utils/auth";
-import connectDB from "../../../../utils/database";
-import { ItemModel } from "../../../../utils/schemaModels";
+import auth from "@/utils/auth";
+import connectDB from "@/utils/database";
+import { ItemModel } from "@/utils/schemaModels";
+import {
+  ExtendedNextApiRequestItem,
+  ResMessageType,
+  SavedItemDataType,
+} from "@/utils/types";
+import type { NextApiResponse } from "next";
 
-const updateItem = async (req: any, res: any) => {
+const updateItem = async (
+  req: ExtendedNextApiRequestItem,
+  res: NextApiResponse<ResMessageType>
+) => {
   try {
     await connectDB();
     // MongoDBのidを指定してitems collectionsから編集対象itemを取得
-    const singleItem = await ItemModel.findById(req.query.id);
+    const singleItem: SavedItemDataType | null = await ItemModel.findById(
+      req.query.id
+    );
+
+    if (!singleItem) {
+      //////////////////////////////////////////////////
+      // 指定したitemが存在しない場合
+      //////////////////////////////////////////////////
+      return res
+        .status(400)
+        .json({ message: "アイテムが存在していないため編集失敗" });
+    }
 
     if (singleItem.email !== req.body.email) {
       //////////////////////////////////////////////////

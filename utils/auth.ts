@@ -1,10 +1,19 @@
 import jwt from "jsonwebtoken";
+import type { NextApiResponse } from "next";
+import {
+  DecodedType,
+  ExtendedNextApiRequestAuth,
+  ResMessageType,
+} from "./types";
 
 // JWT認証のシークレットキー
 const secret_key = "nextmarket";
 
-const auth = (handler: any) => {
-  return async (req: any, res: any) => {
+const auth = (handler: Function) => {
+  return async (
+    req: ExtendedNextApiRequestAuth,
+    res: NextApiResponse<ResMessageType>
+  ) => {
     // リクエストヘッダーからトークンを取得
     const token =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhlbGxvQG1vbm90ZWluLmNvbSIsImlhdCI6MTY4MDg4NTQzOSwiZXhwIjoxNjgwOTY4MjM5fQ.tmZRGJItpzp8J7WMJpqqrbmw5q9mGuX-qDkvY-YLlY0";
@@ -29,7 +38,7 @@ const auth = (handler: any) => {
       // トークンが有効な場合
       //////////////////////////////////////////////////
       const decoded = jwt.verify(token, secret_key);
-      req.body.email = decoded.email;
+      req.body.email = (decoded as DecodedType).email;
       return handler(req, res);
     } catch (err) {
       //////////////////////////////////////////////////

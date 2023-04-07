@@ -1,7 +1,12 @@
-import connectDB from "../../../utils/database";
-import { UserModel } from "../../../utils/schemaModels";
+import connectDB from "@/utils/database";
+import { UserModel } from "@/utils/schemaModels";
+import { ExtendedNextApiRequestUser, ResMessageType } from "@/utils/types";
+import type { NextApiResponse } from "next";
 
-const registerUser = async (req: any, res: any) => {
+const registerUser = async (
+  req: ExtendedNextApiRequestUser,
+  res: NextApiResponse<ResMessageType>
+) => {
   try {
     await connectDB();
     // users collectionsへ書き込み

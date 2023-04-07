@@ -1,8 +1,13 @@
-import auth from "../../../utils/auth";
-import connectDB from "../../../utils/database";
-import { ItemModel } from "../../../utils/schemaModels";
+import auth from "@/utils/auth";
+import connectDB from "@/utils/database";
+import { ItemModel } from "@/utils/schemaModels";
+import { ExtendedNextApiRequestAuth, ResMessageType } from "@/utils/types";
+import type { NextApiResponse } from "next";
 
-const createItem = async (req: any, res: any) => {
+const createItem = async (
+  req: ExtendedNextApiRequestAuth,
+  res: NextApiResponse<ResMessageType>
+) => {
   try {
     await connectDB();
     // items collectionsへ書き込み
