@@ -15,9 +15,7 @@ const auth = (handler: Function) => {
     res: NextApiResponse<ResMessageType>
   ) => {
     // リクエストヘッダーからトークンを取得
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhlbGxvQG1vbm90ZWluLmNvbSIsImlhdCI6MTY4MDg4NTQzOSwiZXhwIjoxNjgwOTY4MjM5fQ.tmZRGJItpzp8J7WMJpqqrbmw5q9mGuX-qDkvY-YLlY0";
-    // const token = await req.headers.authorization.split(" ")[1];
+    const token = await req.headers.authorization.split(" ")[1];
 
     if (req.method === "GET") {
       //////////////////////////////////////////////////
