@@ -39,7 +39,9 @@ export default ReadAllItems;
 
 // SSR
 export const getServerSideProps = async () => {
-  const res = await fetch("next-market-nine.vercel.app/api/item/readall");
+  const res = await fetch(
+    "https://next-market-nine.vercel.app/api/item/readall"
+  );
   const allItems = await res.json();
   return { props: allItems };
 };

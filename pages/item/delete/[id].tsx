@@ -11,7 +11,7 @@ const DeleteItem = (props: any) => {
     try {
       // アイテム削除
       fetch(
-        `next-market-nine.vercel.app/api/item/delete/${props.singleItem._id}`,
+        `https://next-market-nine.vercel.app/api/item/delete/${props.singleItem._id}`,
         {
           method: "POST",
           headers: {
@@ -62,7 +62,7 @@ export default DeleteItem;
 // SSR
 export const getServerSideProps = async (context: any) => {
   const res = await fetch(
-    `next-market-nine.vercel.app/api/item/${context.query.id}`
+    `https://next-market-nine.vercel.app/api/item/${context.query.id}`
   );
   const singleItem = await res.json();
   return { props: singleItem };
