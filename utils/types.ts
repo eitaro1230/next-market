@@ -1,9 +1,12 @@
 import { Types } from "mongoose";
 import type { NextApiRequest } from "next";
+import { StaticImageData } from "next/image";
 
 //////////////////////////////////////////////////
-// schemaModels.tsの型
+// Backend
 //////////////////////////////////////////////////
+
+// schemaModels.tsの型
 // itemの型
 export interface ItemDataType {
   title: String;
@@ -20,9 +23,7 @@ export interface UserDataType {
   password: string;
 }
 
-//////////////////////////////////////////////////
 // auth.tsの型
-//////////////////////////////////////////////////
 // JWTトークンをデコードしたときの型
 export interface DecodedType {
   email: string;
@@ -38,18 +39,14 @@ export interface ExtendedNextApiRequestAuth extends NextApiRequest {
   };
 }
 
-//////////////////////////////////////////////////
 // Common
-//////////////////////////////////////////////////
 // レスポンスボディの型
 export interface ResMessageType {
   message: string;
   token?: string;
 }
 
-//////////////////////////////////////////////////
 // register.ts, login.tsの型
-//////////////////////////////////////////////////
 // リクエストボディの型
 export interface ExtendedNextApiRequestUser extends NextApiRequest {
   body: UserDataType;
@@ -59,33 +56,52 @@ export interface SavedUserDataType extends UserDataType {
   _id: Types.ObjectId;
 }
 
-//////////////////////////////////////////////////
 // readall.ts, [id].ts, update/[id].ts, delete/[id].tsの型
-//////////////////////////////////////////////////
 // リクエストボディの型
 export interface SavedItemDataType extends UserDataType {
   _id: Types.ObjectId;
 }
 
-//////////////////////////////////////////////////
 // readall.tsのみの型
-//////////////////////////////////////////////////
 export interface ResReadAllType {
   message: string;
   allItems?: SavedItemDataType[];
 }
 
-//////////////////////////////////////////////////
 // create.tsのみの型
-//////////////////////////////////////////////////
 export interface ExtendedNextApiRequestItem extends NextApiRequest {
   body: ItemDataType;
 }
 
-//////////////////////////////////////////////////
 // [id].tsのみの型
-//////////////////////////////////////////////////
 export interface ResReadSingleType {
   message: string;
   singleItem?: SavedItemDataType;
+}
+
+//////////////////////////////////////////////////
+// Frontend
+//////////////////////////////////////////////////
+// [id].tsx, update/[id].tsx, delete/[id].tsx
+export interface ReadSingleDateType {
+  singleItem: {
+    _id: string;
+    title: String;
+    image: StaticImageData;
+    price: String;
+    description: String;
+    email?: String;
+  };
+}
+
+// index.tsx
+export interface ReadAllDateType {
+  allItems: {
+    _id: string;
+    title: String;
+    image: StaticImageData;
+    price: String;
+    description: String;
+    email: String;
+  }[];
 }

@@ -1,8 +1,9 @@
 import useAuth from "@/utils/useAuth";
+import { NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
+import React, { useState } from "react";
 
-const CreateItem = () => {
+const CreateItem: NextPage = () => {
   const [newItem, setNewItem] = useState({
     title: "",
     price: "",
@@ -10,15 +11,20 @@ const CreateItem = () => {
     description: "",
   });
 
-  const handleChange = (e: any) => {
+  const handleChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setNewItem({
       ...newItem,
       [e.target.name]: e.target.value,
     });
   };
+  // 型 '(e: React.ChangeEvent<HTMLInputElement>) => void' を型 'ChangeEventHandler<HTMLTextAreaElement>' に割り当てることはできません。
 
   // 作成ボタン押下時の動作
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     // submitイベント発生時のデフォルトの動作を無効にする(ページのリロードを無効)
     e.preventDefault();
 
@@ -87,6 +93,8 @@ const CreateItem = () => {
         </form>
       </div>
     );
+  } else {
+    return <h1>ログインしてください</h1>;
   }
 };
 

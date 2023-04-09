@@ -1,14 +1,15 @@
+import { NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
+import React, { useState } from "react";
 
-const Register = () => {
+const Register: NextPage = () => {
   const [newUser, setNewUser] = useState({
     name: "",
     email: "",
     password: "",
   });
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewUser({
       ...newUser,
       [e.target.name]: e.target.value,
@@ -16,7 +17,7 @@ const Register = () => {
   };
 
   // 登録ボタン押下時の動作
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // submitイベント発生時のデフォルトの動作を無効にする(ページのリロードを無効)
     e.preventDefault();
 

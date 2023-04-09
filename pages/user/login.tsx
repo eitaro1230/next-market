@@ -1,13 +1,14 @@
+import { NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
+import React, { useState } from "react";
 
-const Login = () => {
+const Login: NextPage = () => {
   const [loginUser, setLoginUser] = useState({
     email: "",
     password: "",
   });
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginUser({
       ...loginUser,
       [e.target.name]: e.target.value,
@@ -15,7 +16,7 @@ const Login = () => {
   };
 
   // ログインボタン押下時の動作
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // submitイベント発生時のデフォルトの動作を無効にする(ページのリロードを無効)
     e.preventDefault();
 

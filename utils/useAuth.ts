@@ -12,7 +12,7 @@ const useAuth = () => {
 
   useEffect(() => {
     // トークンを取得
-    const token: string | null = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
     //////////////////////////////////////////////////
     // トークンがない場合(ログインしていない場合)
@@ -24,7 +24,7 @@ const useAuth = () => {
       //////////////////////////////////////////////////
       // トークンが有効な場合
       //////////////////////////////////////////////////
-      const decoded = jwt.verify(token!, secret_key!);
+      const decoded = jwt.verify(token as string, secret_key!);
       setLoginUser((decoded as DecodedType).email);
     } catch (err) {
       //////////////////////////////////////////////////

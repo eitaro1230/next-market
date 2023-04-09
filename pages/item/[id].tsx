@@ -1,9 +1,10 @@
+import { ReadSingleDateType } from "@/utils/types";
+import { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 
-const ReadSingleItem = (props: any) => {
-  console.log(props);
+const ReadSingleItem: NextPage<ReadSingleDateType> = (props) => {
   return (
     <div className="grid-container-si">
       <Head>
@@ -42,7 +43,9 @@ const ReadSingleItem = (props: any) => {
 export default ReadSingleItem;
 
 // SSR
-export const getServerSideProps = async (context: any) => {
+export const getServerSideProps: GetServerSideProps<
+  ReadSingleDateType
+> = async (context) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_DOMAIN_URI}/api/item/${context.query.id}`
   );

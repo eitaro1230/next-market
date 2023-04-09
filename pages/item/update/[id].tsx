@@ -1,8 +1,10 @@
+import { ReadSingleDateType } from "@/utils/types";
 import useAuth from "@/utils/useAuth";
+import { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
+import React, { useState } from "react";
 
-const UpdateItem = (props: any) => {
+const UpdateItem: NextPage = (props: any) => {
   const [updateItem, setUpdateItem] = useState({
     title: props.singleItem.title,
     price: props.singleItem.price,
@@ -10,7 +12,11 @@ const UpdateItem = (props: any) => {
     description: props.singleItem.description,
   });
 
-  const handleChange = (e: any) => {
+  const handleChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setUpdateItem({
       ...updateItem,
       [e.target.name]: e.target.value,
@@ -18,7 +24,7 @@ const UpdateItem = (props: any) => {
   };
 
   // 編集ボタン押下時の動作
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // submitイベント発生時のデフォルトの動作を無効にする(ページのリロードを無効)
     e.preventDefault();
 
@@ -98,7 +104,9 @@ const UpdateItem = (props: any) => {
 export default UpdateItem;
 
 // SSR
-export const getServerSideProps = async (context: any) => {
+export const getServerSideProps: GetServerSideProps<
+  ReadSingleDateType
+> = async (context) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_DOMAIN_URI}/api/item/${context.query.id}`
   );

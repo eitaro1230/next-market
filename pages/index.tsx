@@ -1,8 +1,10 @@
+import { ReadAllDateType } from "@/utils/types";
+import { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 
-const ReadAllItems = (props: any) => {
+const ReadAllItems: NextPage<ReadAllDateType> = (props) => {
   return (
     <div>
       <Head>
@@ -38,7 +40,9 @@ const ReadAllItems = (props: any) => {
 export default ReadAllItems;
 
 // SSR
-export const getServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps<
+  ReadAllDateType
+> = async () => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_DOMAIN_URI}/api/item/readall`
   );

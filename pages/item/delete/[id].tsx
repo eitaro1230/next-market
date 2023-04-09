@@ -1,10 +1,13 @@
+import { ReadSingleDateType } from "@/utils/types";
 import useAuth from "@/utils/useAuth";
+import { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import React from "react";
 
-const DeleteItem = (props: any) => {
+const DeleteItem: NextPage<ReadSingleDateType> = (props) => {
   // 削除ボタン押下時の動作
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // submitイベント発生時のデフォルトの動作を無効にする(ページのリロードを無効)
     e.preventDefault();
 
@@ -60,7 +63,9 @@ const DeleteItem = (props: any) => {
 export default DeleteItem;
 
 // SSR
-export const getServerSideProps = async (context: any) => {
+export const getServerSideProps: GetServerSideProps<
+  ReadSingleDateType
+> = async (context) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_DOMAIN_URI}/api/item/${context.query.id}`
   );
