@@ -21,8 +21,8 @@ const Login: NextPage = () => {
     e.preventDefault();
 
     try {
-      // ユーザー登録
-      fetch("${process.env.NEXT_PUBLIC_DOMAIN_URI}/api/user/login", {
+      // ログイン
+      fetch(`${process.env.NEXT_PUBLIC_DOMAIN_URI}/api/user/login`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -36,6 +36,7 @@ const Login: NextPage = () => {
           alert(data.message);
         });
     } catch (err) {
+      console.log(err);
       alert("ログイン失敗");
     }
   };
