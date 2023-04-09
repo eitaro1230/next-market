@@ -7,7 +7,7 @@ import {
 } from "./types";
 
 // JWT認証のシークレットキー
-const secret_key = process.env.JWT_SECRET_KEY;
+const secret_key = process.env.NEXT_PUBLIC_JWT_SECRET_KEY;
 
 const auth = (handler: Function) => {
   return async (

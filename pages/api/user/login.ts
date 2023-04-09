@@ -9,7 +9,7 @@ import jwt from "jsonwebtoken";
 import type { NextApiResponse } from "next";
 
 // JWT認証のシークレットキー
-const secret_key = process.env.JWT_SECRET_KEY;
+const secret_key = process.env.NEXT_PUBLIC_JWT_SECRET_KEY;
 
 const loginUser = async (
   req: ExtendedNextApiRequestUser,
