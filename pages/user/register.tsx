@@ -22,7 +22,7 @@ const Register = () => {
 
     try {
       // ユーザー登録
-      fetch("https://next-market-nine.vercel.app/api/user/register", {
+      fetch(`${process.env.NEXT_PUBLIC_DOMAIN_URI}/api/user/register`, {
         method: "POST",
         headers: {
           Accept: "application/json",

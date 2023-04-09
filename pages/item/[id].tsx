@@ -44,7 +44,7 @@ export default ReadSingleItem;
 // SSR
 export const getServerSideProps = async (context: any) => {
   const res = await fetch(
-    `https://next-market-nine.vercel.app/api/item/${context.query.id}`
+    `${process.env.NEXT_PUBLIC_DOMAIN_URI}/api/item/${context.query.id}`
   );
   const singleItem = await res.json();
   return { props: singleItem };

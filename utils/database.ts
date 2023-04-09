@@ -5,9 +5,7 @@ const connectDB = async () => {
     //////////////////////////////////////////////////
     // MongoDB接続成功
     //////////////////////////////////////////////////
-    await mongoose.connect(
-      "mongodb+srv://monotein:mVvCZQVHRtrk83dZ@cluster0.xtob8yb.mongodb.net/appDataBase?retryWrites=true&w=majority"
-    );
+    await mongoose.connect(process.env.MONGO_DB_URI!);
     console.log("Success Connected to MongoDB");
   } catch (err) {
     //////////////////////////////////////////////////

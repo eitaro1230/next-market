@@ -21,7 +21,7 @@ const Login = () => {
 
     try {
       // ユーザー登録
-      fetch("https://next-market-nine.vercel.app/api/user/login", {
+      fetch("${process.env.NEXT_PUBLIC_DOMAIN_URI}/api/user/login", {
         method: "POST",
         headers: {
           Accept: "application/json",

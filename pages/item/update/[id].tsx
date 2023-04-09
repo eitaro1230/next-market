@@ -25,7 +25,7 @@ const UpdateItem = (props: any) => {
     try {
       // アイテム編集
       fetch(
-        `https://next-market-nine.vercel.app/api/item/update/${props.singleItem._id}`,
+        `${process.env.NEXT_PUBLIC_DOMAIN_URI}/api/item/update/${props.singleItem._id}`,
         {
           method: "POST",
           headers: {
@@ -100,7 +100,7 @@ export default UpdateItem;
 // SSR
 export const getServerSideProps = async (context: any) => {
   const res = await fetch(
-    `https://next-market-nine.vercel.app/api/item/${context.query.id}`
+    `${process.env.NEXT_PUBLIC_DOMAIN_URI}/api/item/${context.query.id}`
   );
   const singleItem = await res.json();
   return { props: singleItem };

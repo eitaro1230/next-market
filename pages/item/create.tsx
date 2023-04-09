@@ -24,7 +24,7 @@ const CreateItem = () => {
 
     try {
       // アイテム登録
-      fetch("https://next-market-nine.vercel.app/api/item/create", {
+      fetch(`${process.env.NEXT_PUBLIC_DOMAIN_URI}/api/item/create`, {
         method: "POST",
         headers: {
           Accept: "application/json",
