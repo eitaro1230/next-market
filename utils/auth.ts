@@ -35,7 +35,7 @@ const auth = (handler: Function) => {
       //////////////////////////////////////////////////
       // トークンが有効な場合
       //////////////////////////////////////////////////
-      const decoded = jwt.verify(token, secret_key);
+      const decoded = jwt.verify(token, secret_key!);
       req.body.email = (decoded as DecodedType).email;
       return handler(req, res);
     } catch (err) {

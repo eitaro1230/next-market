@@ -24,7 +24,7 @@ const useAuth = () => {
       //////////////////////////////////////////////////
       // トークンが有効な場合
       //////////////////////////////////////////////////
-      const decoded = jwt.verify(token!, secret_key);
+      const decoded = jwt.verify(token!, secret_key!);
       setLoginUser((decoded as DecodedType).email);
     } catch (err) {
       //////////////////////////////////////////////////
