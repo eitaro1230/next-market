@@ -9,7 +9,7 @@ import jwt from "jsonwebtoken";
 import type { NextApiResponse } from "next";
 
 // JWT認証のシークレットキー
-const secret_key = "nextmarket";
+const secret_key = process.env.JWT_SECRET_KEY;
 
 const loginUser = async (
   req: ExtendedNextApiRequestUser,
@@ -44,7 +44,7 @@ const loginUser = async (
     //////////////////////////////////////////////////
     const payload = { email: req.body.email };
     // JWTトークン発行
-    const token = jwt.sign(payload, secret_key, { expiresIn: "23h" });
+    const token = jwt.sign(payload, secret_key!, { expiresIn: "23h" });
     return res.status(200).json({ message: "ログイン成功", token: token });
   } catch (err) {
     return res.status(400).json({ message: "ログイン失敗" });
