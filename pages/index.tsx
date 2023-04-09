@@ -9,6 +9,7 @@ const ReadAllItems = (props: any) => {
         <title>Next Market</title>
       </Head>
       <div className="grid-container-in">
+        <h1>{process.env.NEXT_PUBLIC_TEST}</h1>
         {props.allItems.map((item: any) => (
           <Link href={`/item/${item._id}`} key={item._id}>
             <div className="card">
